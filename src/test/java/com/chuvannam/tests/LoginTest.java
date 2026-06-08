@@ -35,8 +35,7 @@ public class LoginTest {
         loginPage = new LoginPage(driver);
     }
 
-    // PASS
-    @Test(priority = 1)
+    @Test
     public void testSuccessfulLogin() {
 
         loginPage.enterCredentials(
@@ -47,11 +46,10 @@ public class LoginTest {
 
         Assert.assertTrue(
                 loginPage.isLoginSuccessful(),
-                "Login failed!");
+                "Đăng nhập đúng nhưng thất bại!");
     }
 
-    // FAIL CỐ TÌNH
-    @Test(priority = 2)
+    @Test
     public void testFailLogin() {
 
         loginPage.enterCredentials(
@@ -62,7 +60,7 @@ public class LoginTest {
 
         Assert.assertTrue(
                 loginPage.isLoginSuccessful(),
-                "Intentional Fail Test");
+                "Mật khẩu sai!");
     }
 
     @AfterMethod
