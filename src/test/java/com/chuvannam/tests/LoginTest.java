@@ -35,6 +35,7 @@ public class LoginTest {
         loginPage = new LoginPage(driver);
     }
 
+    // PASS
     @Test(priority = 1)
     public void testSuccessfulLogin() {
 
@@ -49,8 +50,9 @@ public class LoginTest {
                 "Login failed!");
     }
 
+    // FAIL CỐ TÌNH
     @Test(priority = 2)
-    public void testWrongPassword() {
+    public void testFailLogin() {
 
         loginPage.enterCredentials(
                 "standard_user",
@@ -58,23 +60,9 @@ public class LoginTest {
 
         loginPage.clickLogin();
 
-        Assert.assertFalse(
+        Assert.assertTrue(
                 loginPage.isLoginSuccessful(),
-                "Login should fail with wrong password!");
-    }
-
-    @Test(priority = 3)
-    public void testWrongUsername() {
-
-        loginPage.enterCredentials(
-                "abcxyz",
-                "secret_sauce");
-
-        loginPage.clickLogin();
-
-        Assert.assertFalse(
-                loginPage.isLoginSuccessful(),
-                "Login should fail with wrong username!");
+                "Intentional Fail Test");
     }
 
     @AfterMethod
