@@ -2,7 +2,7 @@
 
 <suite name="SeleniumSuite">
 
-    <test name="LoginTest">
+    <test name="LoginTests">
 
         <classes>
             <class name="com.chuvannam.tests.LoginTest"/>

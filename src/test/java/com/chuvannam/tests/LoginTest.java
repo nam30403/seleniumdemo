@@ -3,11 +3,12 @@ package com.chuvannam.tests;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import org.openqa.selenium.chrome.ChromeOptions;
+
 import com.chuvannam.pages.LoginPage;
 
 public class LoginTest {
@@ -34,7 +35,7 @@ public class LoginTest {
         loginPage = new LoginPage(driver);
     }
 
-    @Test
+    @Test(priority = 1)
     public void testSuccessfulLogin() {
 
         loginPage.enterCredentials(
@@ -46,6 +47,34 @@ public class LoginTest {
         Assert.assertTrue(
                 loginPage.isLoginSuccessful(),
                 "Login failed!");
+    }
+
+    @Test(priority = 2)
+    public void testWrongPassword() {
+
+        loginPage.enterCredentials(
+                "standard_user",
+                "123456");
+
+        loginPage.clickLogin();
+
+        Assert.assertFalse(
+                loginPage.isLoginSuccessful(),
+                "Login should fail with wrong password!");
+    }
+
+    @Test(priority = 3)
+    public void testWrongUsername() {
+
+        loginPage.enterCredentials(
+                "abcxyz",
+                "secret_sauce");
+
+        loginPage.clickLogin();
+
+        Assert.assertFalse(
+                loginPage.isLoginSuccessful(),
+                "Login should fail with wrong username!");
     }
 
     @AfterMethod
