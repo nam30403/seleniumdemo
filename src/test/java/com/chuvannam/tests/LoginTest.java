@@ -35,6 +35,7 @@ public class LoginTest {
         loginPage = new LoginPage(driver);
     }
 
+    // Workflow success.yml sẽ chạy test này
     @Test
     public void testSuccessfulLogin() {
 
@@ -46,9 +47,10 @@ public class LoginTest {
 
         Assert.assertTrue(
                 loginPage.isLoginSuccessful(),
-                "Đăng nhập đúng nhưng thất bại!");
+                "Login failed!");
     }
 
+    // Workflow fail.yml sẽ chạy test này
     @Test
     public void testFailLogin() {
 
@@ -58,9 +60,10 @@ public class LoginTest {
 
         loginPage.clickLogin();
 
+        // Cố tình fail
         Assert.assertTrue(
                 loginPage.isLoginSuccessful(),
-                "Mật khẩu sai!");
+                "Intentional fail test!");
     }
 
     @AfterMethod
